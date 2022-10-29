@@ -17,5 +17,9 @@ namespace Malan_Andrei_Laborator2.Data
         public DbSet<Malan_Andrei_Laborator2.Models.Book> Book { get; set; } = default!;
 
         public DbSet<Malan_Andrei_Laborator2.Models.Publisher> Publisher { get; set; }
+
+        public DbSet<Malan_Andrei_Laborator2.Models.Author> Authors { get; set; }
+
+        public DbSet<Malan_Andrei_Laborator2.Models.Category> Category { get; set; }
     }
 }
