@@ -27,8 +27,7 @@ namespace Malan_Andrei_Laborator2.Pages.Books
         public string AuthorSort { get; set; }
         public string CurrentFilter { get; set; }
 
-        public async Task OnGetAsync(int? id, int? categoryID, string sortOrder, string
-searchString)
+        public async Task OnGetAsync(int? id, int? categoryID, string sortOrder, string searchString)
         {
             BookD = new BookData();
 
@@ -50,6 +49,7 @@ searchString)
                     BookD.Books = BookD.Books.Where(s => s.Author.FirstName.Contains(searchString)
 
                    || s.Author.LastName.Contains(searchString)
+                   || s.Author.FullName.Contains(searchString)
                    || s.Title.Contains(searchString));
                 }
                 if (id != null)
