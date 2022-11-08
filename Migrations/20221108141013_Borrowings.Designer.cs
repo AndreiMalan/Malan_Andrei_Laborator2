@@ -4,6 +4,7 @@ using Malan_Andrei_Laborator2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Malan_Andrei_Laborator2.Migrations
 {
     [DbContext(typeof(Malan_Andrei_Laborator2Context))]
-    partial class Malan_Andrei_Laborator2ContextModelSnapshot : ModelSnapshot
+    [Migration("20221108141013_Borrowings")]
+    partial class Borrowings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,32 +101,6 @@ namespace Malan_Andrei_Laborator2.Migrations
                     b.ToTable("BookCategory");
                 });
 
-            modelBuilder.Entity("Malan_Andrei_Laborator2.Models.Borrowing", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<int?>("BookID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MemberID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ReturnDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("BookID");
-
-                    b.HasIndex("MemberID");
-
-                    b.ToTable("Borrowing");
-                });
-
             modelBuilder.Entity("Malan_Andrei_Laborator2.Models.Category", b =>
                 {
                     b.Property<int>("ID")
@@ -140,35 +116,6 @@ namespace Malan_Andrei_Laborator2.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("Malan_Andrei_Laborator2.Models.Member", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Adress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Member");
                 });
 
             modelBuilder.Entity("Malan_Andrei_Laborator2.Models.Publisher", b =>
@@ -222,21 +169,6 @@ namespace Malan_Andrei_Laborator2.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Malan_Andrei_Laborator2.Models.Borrowing", b =>
-                {
-                    b.HasOne("Malan_Andrei_Laborator2.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookID");
-
-                    b.HasOne("Malan_Andrei_Laborator2.Models.Member", "Member")
-                        .WithMany("Borrowings")
-                        .HasForeignKey("MemberID");
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Member");
-                });
-
             modelBuilder.Entity("Malan_Andrei_Laborator2.Models.Author", b =>
                 {
                     b.Navigation("Books");
@@ -250,11 +182,6 @@ namespace Malan_Andrei_Laborator2.Migrations
             modelBuilder.Entity("Malan_Andrei_Laborator2.Models.Category", b =>
                 {
                     b.Navigation("BookCategories");
-                });
-
-            modelBuilder.Entity("Malan_Andrei_Laborator2.Models.Member", b =>
-                {
-                    b.Navigation("Borrowings");
                 });
 
             modelBuilder.Entity("Malan_Andrei_Laborator2.Models.Publisher", b =>
