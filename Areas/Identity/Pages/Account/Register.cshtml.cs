@@ -31,8 +31,8 @@ namespace Malan_Andrei_Laborator2.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-
-        //private readonly Malan_Andrei_Laborator2.Data.Malan_Andrei_Laborator2Context_context;
+        private readonly Malan_Andrei_Laborator2.Data.Malan_Andrei_Laborator2Context
+ _context;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -48,7 +48,7 @@ namespace Malan_Andrei_Laborator2.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            //_context = context;
+            _context = context;
         }
 
         /// <summary>
