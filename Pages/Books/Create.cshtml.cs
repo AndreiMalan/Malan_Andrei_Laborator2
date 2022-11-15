@@ -7,9 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Malan_Andrei_Laborator2.Data;
 using Malan_Andrei_Laborator2.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Malan_Andrei_Laborator2.Pages.Books
 {
+    [Authorize(Roles = "Admin")]
+
     public class CreateModel : BookCategoriesPageModel
 
     {
