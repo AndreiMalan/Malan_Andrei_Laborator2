@@ -57,6 +57,8 @@ namespace Malan_Andrei_Laborator2.Areas.Identity.Pages.Account
         /// </summary>
         [BindProperty]
         public Member Member { get; set; }
+
+        [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
@@ -117,8 +119,8 @@ namespace Malan_Andrei_Laborator2.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+           // {
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
@@ -126,8 +128,8 @@ namespace Malan_Andrei_Laborator2.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 Member.Email = Input.Email;
-                //_context.Member.Add(Member);
-                //await _context.SaveChangesAsync();
+                _context.Member.Add(Member);
+                await _context.SaveChangesAsync();
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -158,7 +160,7 @@ namespace Malan_Andrei_Laborator2.Areas.Identity.Pages.Account
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
-            }
+           // }
 
             // If we got this far, something failed, redisplay form
             return Page();
